@@ -1,0 +1,42 @@
+.mainHeader{
+	border:1px solid black;
+	height:150px;
+	width:100%;
+}
+
+.websiteName{/* centering header text in div*/
+	padding-left:4%;
+}
+.js-search{/* centers text and button together with div*/
+	position:relative;
+	left:35%;
+	top:40%;
+}
+.js-form{/* gives the the input and button space from the header text */
+	padding-top:1%;
+}
+.js-input{/* gives size to text input*/
+	width:30%;
+	
+}
+.js-button{/* spaces the button from the input text*/
+	margin-left:.2%;
+}
+
+/*#tr1{
+	position:relative;
+	left:35%;
+	bottom:349px;
+}
+#tr0{
+	position:relative;
+	left:10%;
+	top:11%;
+	clear:right;
+	
+}
+#tr2{
+	position:relative;
+	left:60%;
+	bottom:703px;
+}*/
