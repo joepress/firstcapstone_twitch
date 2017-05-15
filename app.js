@@ -5,24 +5,6 @@
 	
 };
 
-function searchResults(name,elementClass,elementId,videoClass){
-	var resultElement = "";
-			resultElement += "<p class=streamerName>" +name+ "</p>" +
-	    '<iframe class='+elementClass+
-				' id='+elementId+
-        ' src= "http://player.twitch.tv/?channel='+name+'&autoplay=false"'+
-        'height="300"'+
-        'width="400"'+
-        'frameborder="0"'+
-        'scrolling="no"'+
-        'allowfullscreen="true">'+
-    '</iframe>';
-		return resultElement;
-		
-}
-function searchQuery(id,data){
-	return {id: data};
-}
 function enterTwitchAPI(){
 	$.ajax({
     url: "https://api.twitch.tv/kraken/streams/",
@@ -35,14 +17,37 @@ function enterTwitchAPI(){
 				type:'video',
 				limit:100
     }, 
-  success: function( data ) { // grabbing info from twitch and adding it to result element. \/\/\/
-		if(Object.keys(state.currentStream).length > 0) state.prevStream.push(state.currentStream);
+  success: function( data ) {
+		if(Object.keys(state.currentStream).length > 0){
+			
+			state.prevStream.push([data.streams[0].channel.game, data.streams[0].channel.name, data.streams[1].channel.name, data.streams[2].channel.name]);
+		}else{
+			state.prevStream.push([data.streams[0].channel.game, data.streams[0].channel.name, data.streams[1].channel.name, data.streams[2].channel.name]);
+		}
 		var query = $('.js-input').val();
 		state.currentStream[query] = data;
 		renderResults(data);
+		
 	}
 	});
 }
+
+function searchResults(name,elementClass,elementId,videoClass){ 
+	var resultElement = "";
+	resultElement += "<p class=streamerName>" +name+ "</p>" +
+	'<iframe class='+elementClass+
+		' id='+elementId+
+		' src= "http://player.twitch.tv/?channel='+name+'&autoplay=false"'+
+		'height="300"'+
+		'width="400"'+
+		'frameborder="0"'+
+		'scrolling="no"'+
+		'allowfullscreen="true">'+
+   '</iframe>';
+	return resultElement;
+		
+}
+
 
 function renderResults(data){
 	var query = $('.js-input').val();
@@ -57,45 +62,64 @@ function renderResults(data){
 		resultElement += searchResults(data.streams[size-3].channel.name,' results', 'tr91');
 		resultElement += searchResults(data.streams[size-2].channel.name,' results', 'tr92');
 		resultElement += searchResults(data.streams[size-1].channel.name,' results', 'tr93');
+		
+	
 				
 		}else {
 			resultElement += "<p>No results</p>";
 		 }
 		$('.js-results').html(resultElement);
-		//console.log(Object.keys(state.currentStream));
+		
 		$('#dropDownMenu').empty();
 		Object.keys(state.currentStream).forEach(function(key){
 			var previousSearch = state.currentStream[key]
-			console.log(previousSearch);
 			
 			$('#dropDownMenu').append('<option class="dpItem" value="' + previousSearch.streams[0].game + '">' + previousSearch.streams[0].game + '</option>');
 			
-			console.log($('#dropDownMenu option:selected').val());
 			});
 }
 
-function previousResultsZero(state){
+function prevResults(state){
+	var prevResultElement = '';
+	var query = $('.js-input').val();
 	
-}
-function previousResultsOne(state){
-	Object.keys(state.prevStream).forEach(function(key){
-	 var prevSearch = state.prevStream[key];
-	 var prevSize = prevSearch[Object.keys(prevSearch)[0]].streams.length;
-	 var prevResultElement = "";
+	if($('#dropDownMenu option:selected').val() == state.prevStream["0"]["0"]){
 		
-	 if (prevSize > 0) {	
-		prevResultElement += searchResults(prevSearch[Object.keys(prevSearch)[1]].streams[0].channel.name,' results', 'tr0'); 
-		prevResultElement += searchResults(prevSearch[Object.keys(prevSearch)[1]].streams[1].channel.name,' results', 'tr1');
-		prevResultElement += searchResults(prevSearch[Object.keys(prevSearch)[1]].streams[2].channel.name,' results', 'tr2');	
-			
-		prevResultElement += searchResults(prevSearch[Object.keys(prevSearch)[1]].streams[prevSize-3].channel.name,' results', 'tr91');
-		prevResultElement += searchResults(prevSearch[Object.keys(prevSearch)[1]].streams[prevSize-2].channel.name,' results', 'tr92');
-		prevResultElement += searchResults(prevSearch[Object.keys(prevSearch)[1]].streams[prevSize-1].channel.name,' results', 'tr93');
-	 }else {
-		prevResultElement += "<p>No results</p>";
-	 }
-	 $('.js-prevResults').html(prevResultElement);
-  })
+		prevResultElement += searchResults(state.prevStream["0"]["1"],' results', 'tr0');
+		prevResultElement += searchResults(state.prevStream["0"]["2"],' results', 'tr1');
+		prevResultElement += searchResults(state.prevStream["0"]["3"],' results', 'tr2');
+		
+		var prevSize = state.currentStream[query].streams.length;
+		
+		prevResultElement += searchResults(state.prevStream["0"][prevSize-3],' results', 'tr91');
+		prevResultElement += searchResults(state.prevStream["0"][prevSize-2],' results', 'tr92');
+		prevResultElement += searchResults(state.prevStream["0"][prevSize-1],' results', 'tr93');
+		
+	}else if($('#dropDownMenu option:selected').val() == state.prevStream["1"]["0"]){
+		
+		prevResultElement += searchResults(state.prevStream["1"]["1"],' results', 'tr0');
+		prevResultElement += searchResults(state.prevStream["1"]["2"],' results', 'tr1');
+		prevResultElement += searchResults(state.prevStream["1"]["3"],' results', 'tr2');
+		
+		var prevSize = state.currentStream[query].streams.length;
+		
+		prevResultElement += searchResults(state.prevStream["1"][prevSize-3],' results', 'tr91');
+		prevResultElement += searchResults(state.prevStream["1"][prevSize-2],' results', 'tr92');
+		prevResultElement += searchResults(state.prevStream["1"][prevSize-1],' results', 'tr93');
+		
+	}else if($('#dropDownMenu option:selected').val() == state.prevStream["2"]["0"]){
+		
+		prevResultElement += searchResults(state.prevStream["2"]["1"],' results', 'tr0');
+		prevResultElement += searchResults(state.prevStream["2"]["2"],' results', 'tr1');
+		prevResultElement += searchResults(state.prevStream["2"]["3"],' results', 'tr2');
+		
+		var prevSize = state.currentStream[query].streams.length;
+		
+		prevResultElement += searchResults(state.prevStream["2"][prevSize-3],' results', 'tr91');
+		prevResultElement += searchResults(state.prevStream["2"][prevSize-2],' results', 'tr92');
+		prevResultElement += searchResults(state.prevStream["2"][prevSize-1],' results', 'tr93');
+	}
+	$('.js-results').html(prevResultElement);
 }
 
 $(document).ready(function(){
@@ -106,15 +130,4 @@ $(document).ready(function(){
     enterTwitchAPI();
 	});
 	
-	/*$("#dropDownMenu").on("click", function(event){
-		$('.js-results').hide();
-		previousResultsZero(state);
-	});*/
-	
-	/*$(".dropDownMenu").on("click", ".dpMenu,.dpOne", function(event){
-		event.preventDefault();
-		event.stopPropagation();
-		$('.js-results').hide();
-		previousResultsOne(state);
-	});*/
 })
