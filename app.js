@@ -18,12 +18,9 @@ function enterTwitchAPI(){
 				limit:100
     }, 
   success: function( data ) {
-		if(Object.keys(state.currentStream).length > 0){
-			
-			state.prevStream.push([data.streams[0].channel.game, data.streams[0].channel.name, data.streams[1].channel.name, data.streams[2].channel.name]);
-		}else{
-			state.prevStream.push([data.streams[0].channel.game, data.streams[0].channel.name, data.streams[1].channel.name, data.streams[2].channel.name]);
-		}
+		
+		state.prevStream.push([data.streams[0].channel.game, data.streams[0].channel.name, data.streams[1].channel.name, data.streams[2].channel.name, data.streams[99].channel.name, data.streams[98].channel.name, data.streams[97].channel.name]);
+	
 		var query = $('.js-input').val();
 		state.currentStream[query] = data;
 		renderResults(data);
@@ -89,11 +86,10 @@ function prevResults(state){
 		prevResultElement += searchResults(state.prevStream["0"]["2"],' results', 'tr1');
 		prevResultElement += searchResults(state.prevStream["0"]["3"],' results', 'tr2');
 		
-		var prevSize = state.currentStream[query].streams.length;
 		
-		prevResultElement += searchResults(state.prevStream["0"][prevSize-3],' results', 'tr91');
-		prevResultElement += searchResults(state.prevStream["0"][prevSize-2],' results', 'tr92');
-		prevResultElement += searchResults(state.prevStream["0"][prevSize-1],' results', 'tr93');
+		prevResultElement += searchResults(state.prevStream["0"]['4'],' results', 'tr91');
+		prevResultElement += searchResults(state.prevStream["0"]['5'],' results', 'tr92');
+		prevResultElement += searchResults(state.prevStream["0"]['6'],' results', 'tr93');
 		
 	}else if($('#dropDownMenu option:selected').val() == state.prevStream["1"]["0"]){
 		
@@ -101,11 +97,10 @@ function prevResults(state){
 		prevResultElement += searchResults(state.prevStream["1"]["2"],' results', 'tr1');
 		prevResultElement += searchResults(state.prevStream["1"]["3"],' results', 'tr2');
 		
-		var prevSize = state.currentStream[query].streams.length;
 		
-		prevResultElement += searchResults(state.prevStream["1"][prevSize-3],' results', 'tr91');
-		prevResultElement += searchResults(state.prevStream["1"][prevSize-2],' results', 'tr92');
-		prevResultElement += searchResults(state.prevStream["1"][prevSize-1],' results', 'tr93');
+		prevResultElement += searchResults(state.prevStream["1"]['4'],' results', 'tr91');
+		prevResultElement += searchResults(state.prevStream["1"]['5'],' results', 'tr92');
+		prevResultElement += searchResults(state.prevStream["1"]['6'],' results', 'tr93');
 		
 	}else if($('#dropDownMenu option:selected').val() == state.prevStream["2"]["0"]){
 		
@@ -113,11 +108,11 @@ function prevResults(state){
 		prevResultElement += searchResults(state.prevStream["2"]["2"],' results', 'tr1');
 		prevResultElement += searchResults(state.prevStream["2"]["3"],' results', 'tr2');
 		
-		var prevSize = state.currentStream[query].streams.length;
 		
-		prevResultElement += searchResults(state.prevStream["2"][prevSize-3],' results', 'tr91');
-		prevResultElement += searchResults(state.prevStream["2"][prevSize-2],' results', 'tr92');
-		prevResultElement += searchResults(state.prevStream["2"][prevSize-1],' results', 'tr93');
+		
+		prevResultElement += searchResults(state.prevStream["2"]['4'],' results', 'tr91');
+		prevResultElement += searchResults(state.prevStream["2"]['5'],' results', 'tr92');
+		prevResultElement += searchResults(state.prevStream["2"]['6'],' results', 'tr93');
 	}
 	$('.js-results').html(prevResultElement);
 }
