@@ -1,11 +1,11 @@
-  var state = {
+  var state = { 
 	prevStream: [],
 	
 	currentStream: {}
 	
 };
 
-function enterTwitchAPI(){
+function enterTwitchAPI(){ // Accesses Twitch API 
 	$.ajax({
     url: "https://api.twitch.tv/kraken/streams/",
     type: 'GET',
@@ -17,19 +17,21 @@ function enterTwitchAPI(){
 				type:'video',
 				limit:100
     }, 
-  success: function( data ) {
-		
-		state.prevStream.push([data.streams[0].channel.game, data.streams[0].channel.name, data.streams[1].channel.name, data.streams[2].channel.name, data.streams[99].channel.name, data.streams[98].channel.name, data.streams[97].channel.name]);
-	
+  success: function( data ) { // Stores data from Twitch API into prevSteam array inside state object
+		var prevSize = data.streams.length;
+		if(data.streams.length > 99){
+			state.prevStream.push([data.streams[0].channel.game, data.streams[0].channel.name, data.streams[1].channel.name, data.streams[2].channel.name, data.streams[99].channel.name, data.streams[98].channel.name, data.streams[97].channel.name]);
+		}else{
+			state.prevStream.push([data.streams[0].channel.game, data.streams[0].channel.name, data.streams[1].channel.name, data.streams[2].channel.name, data.streams[prevSize-1].channel.name, data.streams[prevSize-2].channel.name, data.streams[prevSize-3].channel.name]);
+		}
 		var query = $('.js-input').val();
-		state.currentStream[query] = data;
+		state.currentStream[query] = data;			// line 27 sets the search value to query, line 28 adds the query variable into the current stream and sets it to data.
 		renderResults(data);
-		
 	}
 	});
 }
 
-function searchResults(name,elementClass,elementId,videoClass){ 
+function searchResults(name,elementClass,elementId,videoClass){  // function that sets up the video results with element id, video class, element class and name.
 	var resultElement = "";
 	resultElement += "<p class=streamerName>" +name+ "</p>" +
 	'<iframe class='+elementClass+
@@ -45,8 +47,7 @@ function searchResults(name,elementClass,elementId,videoClass){
 		
 }
 
-
-function renderResults(data){
+function renderResults(data){ // actually makes the search results function happen by plugging in all the info.
 	var query = $('.js-input').val();
 	var resultElement = "";	
 	if (data.streams.length > 0) {	
@@ -59,24 +60,21 @@ function renderResults(data){
 		resultElement += searchResults(data.streams[size-3].channel.name,' results', 'tr91');
 		resultElement += searchResults(data.streams[size-2].channel.name,' results', 'tr92');
 		resultElement += searchResults(data.streams[size-1].channel.name,' results', 'tr93');
-		
-	
 				
 		}else {
 			resultElement += "<p>No results</p>";
 		 }
 		$('.js-results').html(resultElement);
-		
-		$('#dropDownMenu').empty();
-		Object.keys(state.currentStream).forEach(function(key){
-			var previousSearch = state.currentStream[key]
-			
-			$('#dropDownMenu').append('<option class="dpItem" value="' + previousSearch.streams[0].game + '">' + previousSearch.streams[0].game + '</option>');
-			
+		if(state.prevStream.length <= 3){ // adds the currentStream key to the drop down menu, stops after it reaches three
+			$('#dropDownMenu').empty();
+			Object.keys(state.currentStream).forEach(function(key){
+				var previousSearch = state.currentStream[key]
+				$('#dropDownMenu').append('<option class="dpItem" value="' + previousSearch.streams[0].game + '">' + previousSearch.streams[0].game + '</option>');
 			});
+		}
 }
 
-function prevResults(state){
+function prevResults(state){ // fetches the info from the prevStream and plugs it in to search results, this function runs with the onChange set up in the menu drops html.
 	var prevResultElement = '';
 	var query = $('.js-input').val();
 	
@@ -117,7 +115,7 @@ function prevResults(state){
 	$('.js-results').html(prevResultElement);
 }
 
-$(document).ready(function(){
+$(document).ready(function(){ // event listener for when the form is submitted which is just the search its self.
 	
 	$('.js-form').submit(function(event){
 		event.preventDefault();
