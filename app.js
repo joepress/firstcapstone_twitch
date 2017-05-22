@@ -31,10 +31,11 @@ function enterTwitchAPI(){ // Accesses Twitch API
 	});
 }
 
-function searchResults(name,elementClass,elementId,videoClass){  // function that sets up the video results with element id, video class, element class and name.
+function searchResults(name, elementClass,elementId, colClass){  // function that sets up the video results with element id, video class, element class and name.
 	var resultElement = "";
-	resultElement += "<p class=streamerName>" +name+ "</p>" +
-	'<iframe class='+elementClass+
+	resultElement += "<div class=" + colClass + ">"+
+		"<p class=streamerName>" +name+ "</p>" +
+		'<iframe class='+elementClass+
 		' id='+elementId+
 		' src= "http://player.twitch.tv/?channel='+name+'&autoplay=false"'+
 		'height="300"'+
@@ -42,7 +43,8 @@ function searchResults(name,elementClass,elementId,videoClass){  // function tha
 		'frameborder="0"'+
 		'scrolling="no"'+
 		'allowfullscreen="true">'+
-   '</iframe>';
+   '</iframe>'+
+	 '</div>';
 	return resultElement;
 		
 }
@@ -50,69 +52,56 @@ function searchResults(name,elementClass,elementId,videoClass){  // function tha
 function renderResults(data){ // actually makes the search results function happen by plugging in all the info.
 	var query = $('.js-input').val();
 	var resultElement = "";	
+	var resultElementBottom = "";
 	if (data.streams.length > 0) {	
-		resultElement += searchResults(data.streams[0].channel.name,' results', 'tr0'); 
-		resultElement += searchResults(data.streams[1].channel.name,' results', 'tr1');
-		resultElement += searchResults(data.streams[2].channel.name,' results', 'tr2');	
+		resultElement += searchResults(data.streams[0].channel.name,' results', 'tr0', 'colOne'); 
+		resultElement += searchResults(data.streams[1].channel.name,' results', 'tr1', 'colOne');
+		resultElement += searchResults(data.streams[2].channel.name,' results', 'tr2', 'colOne');	
 				
 		var size = state.currentStream[query].streams.length;
 				
-		resultElement += searchResults(data.streams[size-3].channel.name,' results', 'tr91');
-		resultElement += searchResults(data.streams[size-2].channel.name,' results', 'tr92');
-		resultElement += searchResults(data.streams[size-1].channel.name,' results', 'tr93');
+		resultElementBottom += searchResults(data.streams[size-3].channel.name,' results', 'tr91', 'colTwo');
+		resultElementBottom += searchResults(data.streams[size-2].channel.name,' results', 'tr92', 'colTwo');
+		resultElementBottom += searchResults(data.streams[size-1].channel.name,' results', 'tr93', 'colTwo');
 				
 		}else {
 			resultElement += "<p>No results</p>";
 		 }
-		$('.js-results').html(resultElement);
+		$('.js-results-top3').html(resultElement);
+		$('.js-results-last3').html(resultElementBottom);
+		
 		if(state.prevStream.length <= 3){ // adds the currentStream key to the drop down menu, stops after it reaches three
 			$('#dropDownMenu').empty();
-			Object.keys(state.currentStream).forEach(function(key){
-				var previousSearch = state.currentStream[key]
-				$('#dropDownMenu').append('<option class="dpItem" value="' + previousSearch.streams[0].game + '">' + previousSearch.streams[0].game + '</option>');
-			});
-		}
+			state.prevStream.forEach(function(key){
+			$('#dropDownMenu').append('<option class="dpItem" value="' + key[0]+ '">' + key[0] + '</option>');
+		});
+		}else{
+			$('#dropDownMenu').empty();
+			var prevLength = state.prevStream.length;
+			var lastThree = state.prevStream.slice(prevLength -3, prevLength);
+			lastThree.forEach(function(key){
+				$('#dropDownMenu').append('<option class="dpItem" value="' + key[0]+ '">' + key[0] + '</option>');
+			})
+		}		
 }
 
-function prevResults(state){ // fetches the info from the prevStream and plugs it in to search results, this function runs with the onChange set up in the menu drops html.
+function prevResults(state, info){ // fetches the info from the prevStream and plugs it in to search results, this function runs with the onChange set up in the menu drops html.
 	var prevResultElement = '';
+	var prevResultElementBottom = '';
 	var query = $('.js-input').val();
+	state.prevStream.forEach(function(key){
+		if($('#dropDownMenu option:selected').val() == key["0"]){
+			prevResultElement += searchResults(key["1"],' results', 'tr0', 'colOne');
+			prevResultElement += searchResults(key["2"],' results', 'tr1', 'colOne');
+			prevResultElement += searchResults(key["3"],' results', 'tr2', 'colOne');
 	
-	if($('#dropDownMenu option:selected').val() == state.prevStream["0"]["0"]){
-		
-		prevResultElement += searchResults(state.prevStream["0"]["1"],' results', 'tr0');
-		prevResultElement += searchResults(state.prevStream["0"]["2"],' results', 'tr1');
-		prevResultElement += searchResults(state.prevStream["0"]["3"],' results', 'tr2');
-		
-		
-		prevResultElement += searchResults(state.prevStream["0"]['4'],' results', 'tr91');
-		prevResultElement += searchResults(state.prevStream["0"]['5'],' results', 'tr92');
-		prevResultElement += searchResults(state.prevStream["0"]['6'],' results', 'tr93');
-		
-	}else if($('#dropDownMenu option:selected').val() == state.prevStream["1"]["0"]){
-		
-		prevResultElement += searchResults(state.prevStream["1"]["1"],' results', 'tr0');
-		prevResultElement += searchResults(state.prevStream["1"]["2"],' results', 'tr1');
-		prevResultElement += searchResults(state.prevStream["1"]["3"],' results', 'tr2');
-		
-		
-		prevResultElement += searchResults(state.prevStream["1"]['4'],' results', 'tr91');
-		prevResultElement += searchResults(state.prevStream["1"]['5'],' results', 'tr92');
-		prevResultElement += searchResults(state.prevStream["1"]['6'],' results', 'tr93');
-		
-	}else if($('#dropDownMenu option:selected').val() == state.prevStream["2"]["0"]){
-		
-		prevResultElement += searchResults(state.prevStream["2"]["1"],' results', 'tr0');
-		prevResultElement += searchResults(state.prevStream["2"]["2"],' results', 'tr1');
-		prevResultElement += searchResults(state.prevStream["2"]["3"],' results', 'tr2');
-		
-		
-		
-		prevResultElement += searchResults(state.prevStream["2"]['4'],' results', 'tr91');
-		prevResultElement += searchResults(state.prevStream["2"]['5'],' results', 'tr92');
-		prevResultElement += searchResults(state.prevStream["2"]['6'],' results', 'tr93');
+			prevResultElementBottom += searchResults(key["4"],' results', 'tr91', 'colTwo');
+			prevResultElementBottom += searchResults(key["5"],' results', 'tr92', 'colTwo');
+			prevResultElementBottom += searchResults(key["6"],' results', 'tr93', 'colTwo');
 	}
-	$('.js-results').html(prevResultElement);
+		});
+	$('.js-results-top3').html(prevResultElement);
+	$('.js-results-last3').html(prevResultElementBottom);
 }
 
 $(document).ready(function(){ // event listener for when the form is submitted which is just the search its self.
