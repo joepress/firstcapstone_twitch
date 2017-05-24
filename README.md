@@ -1,4 +1,4 @@
-FirstCapStone_Twitch
+### FirstCapStone_Twitch
 * uses AJAX calls to access twitch API and retrieve information about the streams based on the video game the user searches(specific name for game search)and displays 
 the first three and last three streams of the game the user searches.
 * Has a drop down menu where the search results are logged, max amount is three, will log the last three search results.
@@ -12,7 +12,7 @@ the first three and last three streams of the game the user searches.
 
 * AJAX call and state object the project works through
 
-	### var state = { 
+	```var state = { 
 	prevStream: [],
 	
 	currentStream: {}
