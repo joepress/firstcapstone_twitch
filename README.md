@@ -12,37 +12,38 @@ the first three and last three streams of the game the user searches.
 
 * AJAX call and state object the project works through
 
-	```var state = { 
-	prevStream: [],
+```
+var state = { 
+  prevStream: [],
 	
-	currentStream: {}
+  currentStream: {}
 	
-	};
+};
 
-	function enterTwitchAPI(){ // Accesses Twitch API 
-	$.ajax({
-    url: "https://api.twitch.tv/kraken/streams/",
-    type: 'GET',
-	data: {
-    	 q:$('.js-input').val(),
-	 game:$('.js-input').val(),
-         format: "json",
-	 client_id: 'nvl5tgwjcwad86ywzlvhhxrvkerdxc',
-	 type:'video',
-         limit:100
-    }, 
-  success: function( data ) { // Stores data from Twitch API into prevSteam array inside state object
-	var prevSize = data.streams.length;
-	if(data.streams.length > 99){
-	 state.prevStream.push([data.streams[0].channel.game, data.streams[0].channel.name, data.streams[1].channel.name,
-	 data.streams[2].channel.name, data.streams[99].channel.name, data.streams[98].channel.name, data.streams[97].channel.name]);
-	}else{
-	state.prevStream.push([data.streams[0].channel.game, data.streams[0].channel.name, data.streams[1].channel.name, data.streams[2].channel.name, data.streams[prevSize-1].channel.name, data.streams[prevSize-2].channel.name,  data.streams[prevSize3].channel.name]);
-		}
-	var query = $('.js-input').val();
-	state.currentStream[query] = data;// line 27 sets the search value to query, line 28 adds the query
-	variable into the current stream and sets it to data.
-	renderResults(data);
-	}
-	});
+function enterTwitchAPI(){ // Accesses Twitch API 
+  $.ajax({
+  url: "https://api.twitch.tv/kraken/streams/",
+  type: 'GET',
+  data: {
+  q:$('.js-input').val(),
+  game:$('.js-input').val(),
+  format: "json",
+  client_id: 'nvl5tgwjcwad86ywzlvhhxrvkerdxc',
+  type:'video',
+  limit:100
+  }, 
+ success: function( data ) { // Stores data from Twitch API into prevSteam array inside state object
+   var prevSize = data.streams.length;
+   if(data.streams.length > 99){
+     state.prevStream.push([data.streams[0].channel.game, data.streams[0].channel.name, data.streams[1].channel.name,
+     data.streams[2].channel.name, data.streams[99].channel.name, data.streams[98].channel.name, data.streams[97].channel.name]);
+   }else{
+   state.prevStream.push([data.streams[0].channel.game, data.streams[0].channel.name, data.streams[1].channel.name,data.streams[2].channel.name, data.streams[prevSize-1].channel.name, data.streams[prevSize-2].channel.name,  data.streams[prevSize3].channel.name]);
+    }
+    var query = $('.js-input').val();
+    state.currentStream[query] = data;// line 27 sets the search value to query, line 28 adds the query
+    variable into the current stream and sets it to data.
+    renderResults(data);
+ }
+ });
 }
