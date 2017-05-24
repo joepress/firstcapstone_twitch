@@ -10,7 +10,7 @@ the first three and last three streams of the game the user searches.
 
 * Potential features to come: wider search capability, add amount of followers each streamer has. Will continue to work on this to improve. 
 
-* AJAX call and state object the project works through
+### AJAX call and state object the project works through vv
 
 ```
 var state = { 
@@ -47,3 +47,4 @@ function enterTwitchAPI(){ // Accesses Twitch API
  }
  });
 }
+```
