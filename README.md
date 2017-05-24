@@ -1,14 +1,14 @@
 FirstCapStone_Twitch
-uses AJAX calls to access twitch API and retrieve information about the streams based on the video game the user searches(specific name for game search)and displays 
-the first the three and last three streams of the game the user searches.
-has a drop down menu where the search results are logged, max amount is three, will log the last three search results.
-when one of the options is selected the selected option will be displayed on the page. Working previous menu. 
-uses state object model for storing of in-app information allows for easier manipulation.
-allows users to search for a game and find the most popular and least popular streams in means to first three and last three.
-allows users to watch six different streams.
-allows users to go through previous searches and pull up info based on selected option.
+*uses AJAX calls to access twitch API and retrieve information about the streams based on the video game the user searches(specific name for game search)and displays 
+*the first the three and last three streams of the game the user searches.
+*has a drop down menu where the search results are logged, max amount is three, will log the last three search results.
+*when one of the options is selected the selected option will be displayed on the page. Working previous menu. 
+*uses state object model for storing of in-app information allows for easier manipulation.
+*allows users to search for a game and find the most popular and least popular streams in means to first three and last three.
+*allows users to watch six different streams.
+*allows users to go through previous searches and pull up info based on selected option.
 
-potential features to come: wider search capability, add amount of followers each streamer has. Will continue to work on this to improve. 
+*potential features to come: wider search capability, add amount of followers each streamer has. Will continue to work on this to improve. 
 
 * AJAX call and state object the project works through
 var state = { 
