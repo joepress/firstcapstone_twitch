@@ -12,19 +12,19 @@ the first three and last three streams of the game the user searches.
 
 * AJAX call and state object the project works through
 
-var state = { 
+	var state = { 
 	prevStream: [],
 	
 	currentStream: {}
 	
-};
+	};
 
-function enterTwitchAPI(){ // Accesses Twitch API 
+	function enterTwitchAPI(){ // Accesses Twitch API 
 	$.ajax({
     url: "https://api.twitch.tv/kraken/streams/",
     type: 'GET',
-		data: {
-        q:$('.js-input').val(),
+	data: {
+    q:$('.js-input').val(),
 				game:$('.js-input').val(),
         format: "json",
 				client_id: 'nvl5tgwjcwad86ywzlvhhxrvkerdxc',
