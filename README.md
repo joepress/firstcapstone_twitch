@@ -12,7 +12,7 @@ the first three and last three streams of the game the user searches.
 
 * AJAX call and state object the project works through
 
-	var state = { 
+	### var state = { 
 	prevStream: [],
 	
 	currentStream: {}
