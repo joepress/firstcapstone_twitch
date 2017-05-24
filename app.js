@@ -37,9 +37,9 @@ function searchResults(name, elementClass,elementId, colClass){  // function tha
 		"<p class=streamerName>" +name+ "</p>" +
 		'<iframe class='+elementClass+
 		' id='+elementId+
-		' src= "http://player.twitch.tv/?channel='+name+'&autoplay=false"'+
+		' src= "https://player.twitch.tv/?channel='+name+'&autoplay=false"'+
 		'height="300"'+
-		'width="400"'+
+		'width="100%"'+
 		'frameborder="0"'+
 		'scrolling="no"'+
 		'allowfullscreen="true">'+
