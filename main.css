@@ -1,24 +1,82 @@
+* {
+  box-sizing: border-box;
+}
+
+body{
+	background-color:#B2C9AB;
+	font-size:100%;
+}
+
 .mainHeader{
-	border:1px solid black;
+/*	border:1px solid black;*/
 	height:150px;
 	width:100%;
+	box-shadow: 5px 5px #888888;
+	background-color:#92B6B1;
+	/*border-radius:5px;*/
+	position: absolute;
+	top: 0px;
+	right: 0;
+	left: 0; 
+	margin: 0 auto;
+
 }
 
 .websiteName{/* centering header text in div*/
-	padding-left:4%;
+	position:relative;
+	top:40px;
+	right: 0;
+	left: 45%; 
+	margin: 0 auto;
 }
 .js-search{/* centers text and button together with div*/
-	position:relative;
-	left:35%;
-	top:40%;
+	
 }
 .js-form{/* gives the the input and button space from the header text */
 	padding-top:1%;
+	position:relative;
+	top: 40px;
+	
 }
 .js-input{/* gives size to text input*/
-	width:30%;
+	width:45%;
+	height:40px;
+	position:relative;
+	top:;
+	right: 0;
+	left: 27%; 
+	margin: 0 auto;
+	border-radius:2%;
+	font-size:26px;
+	height:100%;
+
+	
+	
 	
 }
 .js-button{/* spaces the button from the input text*/
 	margin-left:.2%;
+	position:relative;
+	top: 1px;
+	right: 0;
+	left: 27.5%; 
+	margin: 0 auto;
+	border-radius:2%;
+	height:38px;
+	font-size:100%;
+}
+
+.results{
+	/*border: 1px black solid;*/
+	box-shadow: 10px 10px 5px #888888;
+}
+#dropDownMenu{
+	z-index:1;
+	position:absolute;
+	top:51%;
+	right: 0;
+	left: 80%; 
+	margin: 0 auto;
+	border-radius:2%;
+	height:40px;
 }

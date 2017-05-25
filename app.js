@@ -1,4 +1,4 @@
-  var state = { 
+var state = { 
 	prevStream: [],
 	
 	currentStream: {}
@@ -31,7 +31,7 @@ function enterTwitchAPI(){ // Accesses Twitch API
 	});
 }
 
-function searchResults(name, elementClass,elementId, colClass){  // function that sets up the video results with element id, video class, element class and name.
+function searchResults(name, elementClass, elementId, colClass){  // function that sets up the video results with element id, video class, element class and name.
 	var resultElement = "";
 	resultElement += "<div class=" + colClass + ">"+
 		"<p class=streamerName>" +name+ "</p>" +
@@ -53,17 +53,18 @@ function renderResults(data){ // actually makes the search results function happ
 	var query = $('.js-input').val();
 	var resultElement = "";	
 	var resultElementBottom = "";
-	if (data.streams.length > 0) {	
+	if (data.streams.length > 0) {
+		resultElement += "<span class='topThree'>Most Viewers</span>";
 		resultElement += searchResults(data.streams[0].channel.name,' results', 'tr0', 'colOne'); 
 		resultElement += searchResults(data.streams[1].channel.name,' results', 'tr1', 'colOne');
 		resultElement += searchResults(data.streams[2].channel.name,' results', 'tr2', 'colOne');	
 				
 		var size = state.currentStream[query].streams.length;
 				
+		resultElementBottom += "<span class='lastThree'>Least Viewers</span>";		
 		resultElementBottom += searchResults(data.streams[size-3].channel.name,' results', 'tr91', 'colTwo');
 		resultElementBottom += searchResults(data.streams[size-2].channel.name,' results', 'tr92', 'colTwo');
 		resultElementBottom += searchResults(data.streams[size-1].channel.name,' results', 'tr93', 'colTwo');
-				
 		}else {
 			resultElement += "<p>No results</p>";
 		 }

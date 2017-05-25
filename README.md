@@ -11,7 +11,7 @@ allows users to go through previous searches and pull up info based on selected 
 potential features to come: wider search capability, add amount of followers each streamer has. Will continue to work on this to improve. 
 
 * AJAX call and state object the project works through
-var state = { 
+### var state = { 
 	prevStream: [],
 	
 	currentStream: {}
