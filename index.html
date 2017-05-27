@@ -5,7 +5,7 @@
 	<meta charset='UTF-8'>
 	<link rel='stylesheet' href='main.css'>
 	<link rel='stylesheet' href='float-grid.css'>
-	
+	<link href="https://fonts.googleapis.com/css?family=Bangers" rel="stylesheet">
 </head>
 <body>
 
@@ -13,18 +13,15 @@
 	
 		<header class='mainHeader'>
 		
-		<select id="dropDownMenu" onChange='prevResults(state)'>
-			
-		</select>
-		
 			<div class='js-search'>
 			
-				<span class='websiteName'>Header</span>
+				<div><span class='websiteName'>Alluring The Inadmissible Here </span></div>
 		
 				<form class='js-form'>
-			
-					<input type='search' class='js-input' placeholder='What game do you want to watch?'>
-					<button type='submit' class='js-button'>Search</button>
+					
+					<div><input type='search' class='js-input' placeholder='What game do you want to watch?'></div>
+					<div><button type='submit' class='js-button'>Search</button></div>
+					<div><select id="dropDownMenu" onChange='prevResults(state)'></select></div>
 				
 				</form>
 				
@@ -34,8 +31,15 @@
 	
 	</div>
 		
+	<footer class="footer">
+		<p>Designed and built by <a href="https://github.com/joepress">Joseph Pressley</a></p>
+		<p>Powered by <a href='/www.twitch.tv'>Twitch</a> and <a href="https://fonts.google.com/">Google fonts</a></p>
+	</footer>	
+	
 	<div class='js-results-top3'></div>
 	<div class='js-results-last3'></div>
+	
+	
 	
 <script type = 'text/javascript' src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
 <script src='app.js'></script>

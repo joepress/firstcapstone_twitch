@@ -3,80 +3,97 @@
 }
 
 body{
-	background-color:#B2C9AB;
-	font-size:100%;
+	background: radial-gradient(ellipse at center, rgba(219,240,252,1) 0%,rgba(237, 231, 231, 0.98) 90%);
+	background-attachment: fixed;
 }
 
 .mainHeader{
-/*	border:1px solid black;*/
 	height:150px;
 	width:100%;
-	box-shadow: 5px 5px #888888;
-	background-color:#92B6B1;
-	/*border-radius:5px;*/
+	box-shadow: 5px 5px 5px #888888;
+	background-color:rgba(57, 46, 92, 0.98);
 	position: absolute;
 	top: 0px;
 	right: 0;
 	left: 0; 
 	margin: 0 auto;
-
 }
 
 .websiteName{/* centering header text in div*/
 	position:relative;
 	top:40px;
 	right: 0;
-	left: 45%; 
+	left: 37%; 
 	margin: 0 auto;
+	font-size:100%;
+	font-size:2em;
+	font-family: 'Bangers', cursive;
 }
-.js-search{/* centers text and button together with div*/
-	
-}
+
 .js-form{/* gives the the input and button space from the header text */
 	padding-top:1%;
 	position:relative;
 	top: 40px;
-	
 }
 .js-input{/* gives size to text input*/
 	width:45%;
 	height:40px;
-	position:relative;
-	top:;
-	right: 0;
-	left: 27%; 
-	margin: 0 auto;
-	border-radius:2%;
-	font-size:26px;
-	height:100%;
+	position:absolute;
+	left: 22%; 
+	border-radius:5%;
+	font-size:35px;
+	height:40px;
+	box-shadow: 2px 2px 2px #888888;
+	font-family: 'Bangers', cursive;
 
-	
-	
-	
 }
 .js-button{/* spaces the button from the input text*/
-	margin-left:.2%;
-	position:relative;
-	top: 1px;
-	right: 0;
-	left: 27.5%; 
-	margin: 0 auto;
-	border-radius:2%;
-	height:38px;
+	position:absolute;
+	top: 100%;
+	left: 68%; 
+	border-radius:5%;
+	height:40px;
 	font-size:100%;
+	box-shadow: 2px 2px 2px #888888;
 }
 
 .results{
-	/*border: 1px black solid;*/
 	box-shadow: 10px 10px 5px #888888;
 }
 #dropDownMenu{
 	z-index:1;
 	position:absolute;
-	top:51%;
-	right: 0;
-	left: 80%; 
-	margin: 0 auto;
-	border-radius:2%;
+	top:100%;
+	left: 75%; 
+	border-radius:5%;
 	height:40px;
+	font-size:1.5em;
+	box-shadow: 2px 2px 2px #888888;
+	font-family: 'Bangers', cursive;
+	padding-right:.5%;
+}
+.topThree,.lastThree{
+	position:absolute;
+	left:-30%;
+	font-size:40px;
+	font-family: 'Bangers', cursive;
+}
+
+.lastThree{
+	top:15%;
+}
+.topThree{
+	top:10%;
+}
+.streamerName{
+	font-size:1.5em;
+	font-family: 'Bangers', cursive;
+}
+.footer{
+	position:absolute;
+	top:100%;
+	left:45%;
+	z-index:1;
+	font-size:80%;
+	font-family: 'Bangers', cursive;
 }
