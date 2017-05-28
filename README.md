@@ -10,11 +10,6 @@ the first three and last three streams of the game the user searches.
 
 * Potential features to come: wider search capability, add amount of followers each streamer has, amount of viewers each streamer currently has. Will continue to work on this to improve. 
 
-<<<<<<< HEAD
-* AJAX call and state object the project works through
-### var state = { 
-	prevStream: [],
-=======
 ### AJAX call and state object the project works through vv
 
 ```
