@@ -1,3 +1,27 @@
+.colOne, .colTwo{
+	width:100%;
+}
+
+.js-results-top3{
+	max-width: 1000px;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin: 0 auto;
+	position:relative;
+	top: 150px;
+
+}
+
+.js-results-last3{
+	max-width: 1000px;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin: 0 auto;
+	position:relative;
+	top: 150px;
+}
+
+@media only screen and (min-width: 800px) {	
 * {
   box-sizing: border-box;
 }
@@ -25,17 +49,10 @@
 	float: left;
 	padding-left: 1.04166666%;
   padding-right: 1.04166666%;
-	
+	width:33%;
 	
 }
 
-.colOne{
-	width: ;
-}
-
-.colTwo{
-	width: ;
-}
 
 .js-results-top3::before,
 .js-results-top3::after {
@@ -56,4 +73,5 @@
 
 .js-results-top3::after {
   clear: both;
+}
 }
