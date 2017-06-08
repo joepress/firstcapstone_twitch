@@ -20,7 +20,7 @@
 		margin: 0 auto;
 	}
 	
-	.websiteName{/* centering header text in div*/
+	.websiteName{
 		position:absolute;
 		top:10%;
 		right: 0;
@@ -38,12 +38,12 @@
 		font-size:1.75em
 	}
 	
-	.js-form{/* gives the the input and button space from the header text */
+	.js-form{
 		padding-top:1%;
 		position:relative;
 		top: 40px;
 	}
-	.js-input{/* gives size to text input*/
+	.js-input{
 	width:45%;
 	position:absolute;
 	left: 15%; 
@@ -56,7 +56,7 @@
 
 	}
 	
-	.js-button{/* spaces the button from the input text*/
+	.js-button{
 		position:absolute;
 		top:20px ;
 		left: 62%; 
@@ -84,9 +84,9 @@
 		box-shadow: 10px 10px 5px #888888;
 	}
 	
-	.topThree,.lastThree,.randomThree{
-		position:absolute;
-		left:35%;
+	.topThree, .lastThree, .randomThree{
+		position:relative;
+		left:-30%;
 		font-size:40px;
 		font-family: 'Bangers', cursive;
 	}
@@ -108,7 +108,7 @@
 	}
 @media only screen and (min-width: 800px) {	
 
-	.js-input{/* gives size to text input*/
+	.js-input{
 	width:45%;
 	position:absolute;
 	top:100%;
@@ -121,7 +121,7 @@
 
 	}
 	
-	.websiteName{/* centering header text in div*/
+	.websiteName{
 		position:absolute;
 		top:10%;
 		right: 0;
@@ -132,11 +132,7 @@
 		z-index:1;
 		
 	}
-	.websiteName:hover{
-		/*background-color:white;*/
-	}
-
-	.js-button{/* spaces the button from the input text*/
+	.js-button{
 		position:absolute;
 		top: 100%;
 		left: 68%; 
@@ -175,7 +171,7 @@
 	}
 	.topThree,.lastThree,.randomThree{
 		position:absolute;
-		left:-30%;
+		/*left:-30%;*/
 		font-size:40px;
 		font-family: 'Bangers', cursive;
 	}
