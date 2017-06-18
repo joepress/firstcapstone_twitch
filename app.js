@@ -54,8 +54,7 @@ function searchResults(name, elementClass, elementId, colClass, height){  // fun
 		' allowfullscreen="true">'+
    '</iframe>'+
 	 '</div>';
-	return resultElement;
-		
+	return resultElement;	
 }
 
 function renderResults(data){ // actually makes the search results function happen by plugging in all the info.
@@ -107,7 +106,6 @@ function renderResults(data){ // actually makes the search results function happ
 				$('#dropDownMenu').append('<option class="dpItem" value="' + key[0]+ '">' + key[0] + '</option>');
 			})
 		}		
-		
 }
 
 function prevResults(state, info){ // fetches the info from the prevStream and plugs it in to search results, this function runs with the onChange set up in the menu drops html.
@@ -147,7 +145,6 @@ function singleVideo(state){ // use the event rather than the state or this so i
 	$('.js-results-random').hide();
 	$('.js-results-last3').hide();
 	
-	
 	state.nameArray.forEach(function(key){
 		if(event.currentTarget.id == key){
 			var element = '';
@@ -172,13 +169,6 @@ $(document).ready(function(){ // event listener for when the form is submitted w
     enterTwitchAPI();
 	});
 	
-	/*$('.streamerName').click(function(event) {
-	 event.preventDefault;
-	 console.log('hey world');
-	 window.location.href = this.name + '.html';
-  });*/
-	
-
 })
 
 
