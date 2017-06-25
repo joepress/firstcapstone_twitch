@@ -15,7 +15,7 @@ the first three and last three streams of the game the user searches.
 ```
 var state = { 
   prevStream: [],
->>>>>>> 8790355c1a8ab5e4f6efc8d0aa6b18a6a097e4a1
+
 	
   currentStream: {}
 	
